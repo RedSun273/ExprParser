@@ -9,7 +9,14 @@ namespace RandomVariable
         static void Main(string[] args)
         {
             var c = new RandomVariableStatisticCalculator();
-            Console.WriteLine(c.CalculateStatistic("1d6", StatisticKind.ExpectedValue));
+            var pd = c.CalculateStatistic("1d4", new[] { StatisticKind.ProbabilityDistribution, StatisticKind.ExpectedValue, StatisticKind.Variance });
+            foreach (var d in pd.ProbabilityDistribution)
+                Console.WriteLine(d.Key + " " + d.Value);
+            Console.WriteLine(" ");
+            Console.WriteLine(pd.Variance);
+            Console.WriteLine(" ");
+            Console.WriteLine(pd.ExpectedValue);
+            Console.WriteLine(" ");
         }
     }
 }
